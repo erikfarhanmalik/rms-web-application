@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="navbar" class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">RMS</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li>
+						<a href="#">
+							<i class="material-icons">settings</i>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="$('#logout-form').submit()">
+							<i class="material-icons">power_settings_new</i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			
+			<form id="logout-form" style="display: none" th:action="@{/logout}" method="post"></form>
+		</nav>
+	</div>
+</body>
+</html>

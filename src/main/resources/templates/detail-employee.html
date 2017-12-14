@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+<meta charset="ISO-8859-1" />
+<title>RMS - Home page</title>
+</head>
+<body>
+	<div id="detail-content" class="col s12">
+		<div class="row">
+			<div th:replace="common::readonly-field('First Name', ${employee.firstName})"></div>
+			<div th:replace="common::readonly-field('Sub Division', ${employee.subDivision})"></div>
+		</div>
+
+		<div class="row">
+			<div th:replace="common::readonly-field('Last Name', ${employee.lastName})"></div>
+			<div th:replace="common::readonly-field('Status', ${employee.status})"></div>
+		</div>
+
+		<div class="row">
+			<div th:replace="common::readonly-field('Gender', ${employee.gender})"></div>
+			<div th:replace="common::readonly-field('Suspend Date', ${employee.suspendDate})"></div>
+		</div>
+
+		<div class="row">
+			<div th:replace="common::readonly-field('Date of Birth', ${employee.dateOfBirth})"></div>
+			<div th:replace="common::readonly-field('Hired Date', ${employee.hiredDate})"></div>
+		</div>
+
+		<div class="row">
+			<div th:replace="common::readonly-field('Nationality', ${employee.nationality})"></div>
+			<div th:replace="common::readonly-field('Grade', ${employee.grade.name})"></div>
+		</div>
+
+		<div class="row">
+			<div th:replace="common::readonly-field('Marital Status', ${employee.maritalStatus})"></div>
+			<div th:replace="common::readonly-field('Division', ${employee.division.name})"></div>
+		</div>
+
+		<div class="row">
+			<div th:replace="common::readonly-field('Phone', ${employee.phone})"></div>
+			<div th:replace="common::readonly-field('Email', ${employee.email})"></div>
+		</div>
+		<div class="row">
+			<div th:replace="common::readonly-field('Location', ${employee.location})"></div>
+		</div>
+	</div>
+</body>
+</html>

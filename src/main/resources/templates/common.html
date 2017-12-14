@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="input-text (label,id)" class="input-field col s6">
+		<input th:id="${id}" th:name="${id}" type="text" th:attr="data-error=${id + '-error' }"/>
+		<label th:for="${id}" th:text="${label}"></label>
+		<div th:class="${id + '-error' }"></div>
+	</div>
+	
+	<div th:fragment="readonly-field (label,value)" class="input-field col s6">
+      <input disabled="" th:value="${value}" type="text"/>
+      <label class="active" th:text="${label}"></label>
+    </div>
+	
+	<div th:fragment="date-picker (label,id)" class="input-field col s6">
+		<input th:id="${id}" th:name="${id}" type="text" class="datepicker" th:attr="data-error=${id + '-error' }"/>
+		<label th:for="${id}" th:text="${label}"></label>
+		<div th:class="${id + '-error' }"></div>
+	</div>
+	
+	<div th:fragment="drop-down (label,id,options)" class="input-field col s6">
+		<select th:id="${id}" th:name="${id}" th:attr="data-error=${id + '-error' }" required="">
+			<option value="" th:text="'Choose ' + ${label}"></option>
+	      	<option th:each="option : ${options}" th:value="${option.value}" th:text="${option.label}"></option>
+	    </select>
+	    <label th:for="${id}" th:text="${label}"></label>
+	    <div th:class="${id + '-error' }"></div>
+	</div>
+</body>
+</html>

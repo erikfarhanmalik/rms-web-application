@@ -1,0 +1,147 @@
+.box-center {
+	align-items: center;
+	justify-content: center;
+}
+
+.mdl-layout__content {
+	padding: 24px;
+	flex: none;
+}
+
+.demo-layout-transparent {
+	background-color: #006be5;
+}
+
+.demo-layout-transparent .mdl-layout__header, .demo-layout-transparent .mdl-layout__drawer-button
+	{
+	color: white;
+}
+
+.mdl-layout__content>.mdl-card {
+	margin: auto;
+}
+
+.mdl-layout__content>.mdl-card .mdl-card__actions {
+	text-align: right;
+}
+
+nav {
+	background-color: #4051B5;
+}
+
+.main-control, .list-control {
+	background-color: #5C6BC0;
+	padding: 0 10px;
+	color: white;
+	display: grid;
+}
+
+.list-control {
+	grid-template-columns: 50px auto 60px;
+	grid-template-rows: 60px;
+}
+
+.main-control {
+	grid-template-columns: repeat(6, auto);
+	grid-template-rows: 60px;
+}
+
+.main-control span {
+	text-align: center;
+	color: #999;
+	cursor: pointer;
+	padding: 5px;
+	margin: auto;
+	background-color: white;
+	border-radius: 3px;
+}
+
+.main-control span.active {
+	color: #26a69a;
+}
+
+.main-content-container {
+	padding: 0 !important;
+	max-height: 570px;
+	overflow-y: scroll;
+}
+
+.employee-list-container {
+	border-right: solid 1px #888;
+	padding: 0 !important;
+	max-height: 570px;
+	overflow-y: scroll;
+}
+
+.employee:hover {
+	background-color: #aab7ff;
+}
+
+.employee {
+	display: grid;
+	grid-template-columns: 50px auto;
+	grid-template-rows: auto auto auto;
+	grid-column-gap: 5px;
+	padding: 10px;
+	border-bottom: solid 1px #888;
+	cursor: pointer;
+}
+
+.picture {
+	grid-column: 1/2;
+	grid-row: 1/4;
+}
+
+.employee .name {
+	font-weight: bold;
+}
+
+.contact, .grade {
+	font-size: 8pt;
+}
+
+.picture img {
+	width: 100%;
+}
+
+.brand-logo {
+	padding-left: 10px !important;
+}
+
+.input-field .error {
+	color: #D91E18;
+	font-size: 10pt;
+}
+
+.main-content-container .page {
+    padding-top: 15px;
+}
+
+#employee-form .input-field {
+	margin-bottom: 20px !important;
+}
+
+#employee-form input {
+	margin: 0 !important;
+}
+
+#employee-form input.error {
+	border-bottom-color: #D91E18;
+}
+
+.main-content-container .page {
+	display: none;
+}
+
+.main-content-container .page.active {
+	display: block;
+}
+
+.detail-page label.active {
+	color: #26a69a !important;
+}
+
+.detail-page input {
+    color: #666 !important;
+    border-bottom: solid 1px #666
+}

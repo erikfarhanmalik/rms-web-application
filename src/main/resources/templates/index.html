@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>RMS - Home page</title>
+</head>
+<body>
+	<h1>RMS Home page</h1>
+	
+	<a th:href="@{/employees}">Employees</a>
+	
+	<div sec:authorize="isAuthenticated()">
+		<span sec:authentication="name"></span>
+		<form th:action="@{/logout}" method="POST">
+			<input type="submit" value="Logout"></input>
+		</form>
+	</div>
+</body>
+</html>
