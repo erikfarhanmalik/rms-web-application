@@ -2,6 +2,7 @@ package com.mitrais.rms.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mitrais.rms.enums.EmployeeStatus;
 import com.mitrais.rms.enums.Gender;
 import com.mitrais.rms.enums.MaritalStatus;
+import com.mitrais.rms.enums.UserRole;
 
 import lombok.Data;
 
@@ -52,5 +54,11 @@ public class Employee {
 	private Division division;
 	private String email;
 	private String location;
+	
+	@Column(nullable = false, unique = true)
+    private String username;
+    private String password;
 
+    @Enumerated(EnumType.STRING)
+	private UserRole role;
 }

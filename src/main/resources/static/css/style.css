@@ -63,14 +63,18 @@ nav {
 .main-content-container {
 	padding: 0 !important;
 	max-height: 570px;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .employee-list-container {
 	border-right: solid 1px #888;
 	padding: 0 !important;
 	max-height: 570px;
-	overflow-y: scroll;
+	overflow-y: auto;
+}
+
+.header-user-info {
+	padding: 0 1rem;
 }
 
 .employee:hover {
@@ -114,7 +118,7 @@ nav {
 }
 
 .main-content-container .page {
-    padding-top: 15px;
+	padding-top: 15px;
 }
 
 #employee-form .input-field {
@@ -142,6 +146,39 @@ nav {
 }
 
 .detail-page input {
-    color: #666 !important;
-    border-bottom: solid 1px #666
+	color: #666 !important;
+	border-bottom: solid 1px #666
+}
+
+.pagintaion {
+	background-color: #5C6BC0;
+	color: white;
+}
+
+.paging-label {
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+
+.paging-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#goToPage {
+    width: 40px;
+	margin: 15px;
+	height: 20px;
+	text-align: center;
+}
+
+#paging-button {
+    padding: 3px 7px;
+    color: #26a69a;
+    border-radius: 3px;
+    background-color: #eee;
+    cursor: pointer;
 }

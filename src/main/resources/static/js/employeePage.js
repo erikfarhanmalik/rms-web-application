@@ -13,6 +13,21 @@ function initializeControl(){
 	});
 }
 
+function movePagination(){
+	var page = $('#goToPage').val(); 
+	var keyword = ""; 
+	
+	if(isNaN(page)){
+		toastr.error('Page should be number');
+	} else {			
+		$('#employee-list').load('employees/search?page=' + page + '&keyword=' + keyword, function(response, status, xhr) {
+			if (status == "error") {
+				toastr.error('Failed to load employee data');
+			}
+		});
+	}
+}
+
 function changePage(page) {
 	$('.page.active').removeClass('active');
 	$('.' + page).addClass('active');

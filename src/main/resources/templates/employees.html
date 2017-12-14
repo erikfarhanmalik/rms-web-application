@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <head>
 <title>RMS - Employees page</title>
 
@@ -14,29 +14,16 @@
 </head>
 
 <body>
-	<div th:replace="layout :: navbar"></div>
+	<div th:replace="layout::navbar"></div>
 
 	<div class="row">
-		<div class="col m12 l4 employee-list-container">
-			<div class="list-control valign-wrapper">
-				<i class="material-icons">search</i>
-				<span style="margin-left: 20px">Search</span>
-				<span class="new badge" data-badge-caption="">4</span>
-			</div>
-			<div class="employee" th:each="employee : ${employees}">
-				<input class="employeeId" type="hidden" th:value="${employee.id}"/>
-				<div class="picture">
-					<img th:src="@{/img/user.png}" />
-				</div>
-				<span class="name" th:text="${employee.firstName} + ' ' + ${employee.lastName}">Name</span>
-				<span class="grade" th:text="${employee.division.code} + ' - ' + ${employee.grade.code}">Grade</span>
-				<span class="contact" th:text="${employee.location + ', ' + employee.phone}"></span>
-			</div>
+		<div id="employee-list">		
+			<div th:replace="list-employee::list-employee"></div>	
 		</div>
 		
 		<div class="col m12 l8 main-content-container">
 			<div class="main-control valign-wrapper">
-				<span data-page-name="create-page" class="material-icons small active">note_add</span>
+				<span data-page-name="create-page" class="material-icons small" sec:authorize="hasRole('ADMIN')">note_add</span>
 				<span data-page-name="detail-page" class="material-icons small">person</span>
 				<span data-page-name="history-page" class="material-icons small">history</span>
 				<span data-page-name="grade-page" class="material-icons small">layers</span>
@@ -44,7 +31,13 @@
 				<span data-page-name="location-page" class="material-icons small">location_on</span>
 			</div>
 			
-			<div class="page create-page active">
+			<div class="page home-page active center-align">
+				<h5>Wellcome to Resource Management System (RMS)</h5>
+			</div>
+			
+			<div class="page create-page" sec:authorize="hasRole('ADMIN')">
+				<h5 style="padding-left: 1.5rem">Input new employee data</h5>
+				<br/>
 				<form id="employee-form" class="col s12" th:action="@{/employees}">
 					<div class="row">
 						<div th:replace="common::input-text ('First Name', 'firstName')"></div>
@@ -53,11 +46,11 @@
 	
 					<div class="row">
 						<div th:replace="common::input-text ('Last Name', 'lastName')"></div>
-						<div th:replace="common::drop-down ('Status', 'status', ${employeeStatusOptions})"></div>
+						<div th:replace="common::drop-down ('Status', 'status', ${@dropdownService.getEmployeeStatusDropdown()})"></div>
 					</div>
 	
 					<div class="row">
-						<div th:replace="common::drop-down ('Gender', 'gender', ${genderOptions})"></div>
+						<div th:replace="common::drop-down ('Gender', 'gender', ${@dropdownService.getGenderDropdown()})"></div>
 						<div th:replace="common::date-picker ('Suspend Date', 'suspendDate')"></div>
 					</div>
 	
@@ -68,12 +61,12 @@
 	
 					<div class="row">
 						<div th:replace="common::input-text ('Nationality', 'nationality')"></div>
-						<div th:replace="common::drop-down ('Grade', 'grade', ${gradeOptions})"></div>
+						<div th:replace="common::drop-down ('Grade', 'grade', ${@dropdownService.getGradeDropdown()})"></div>
 					</div>
 	
 					<div class="row">
-						<div th:replace="common::drop-down ('Marital Status', 'maritalStatus', ${maritalStatusOptions})"></div>
-						<div th:replace="common::drop-down ('Division', 'division', ${divisionOptions})"></div>
+						<div th:replace="common::drop-down ('Marital Status', 'maritalStatus', ${@dropdownService.getMaritalStatusDropdown()})"></div>
+						<div th:replace="common::drop-down ('Division', 'division', ${@dropdownService.getDivisionDropdown()})"></div>
 					</div>
 	
 					<div class="row">
@@ -92,11 +85,21 @@
 				</form>
 			</div>
 			
-			<div class="page detail-page"></div>
-			<div class="page history-page"></div>
-			<div class="page grade-page"></div>
-			<div class="page family-page"></div>
-			<div class="page location-page"></div>
+			<div class="page detail-page">
+				<h5 class="center-align">Select an employee to see his/her detail</h5>
+			</div>
+			<div class="page history-page">
+				<h5 class="center-align">Under Construction !</h5>
+			</div>
+			<div class="page grade-page">
+				<h5 class="center-align">Under Construction !</h5>
+			</div>
+			<div class="page family-page">
+				<h5 class="center-align">Under Construction !</h5>
+			</div>
+			<div class="page location-page">
+				<h5 class="center-align">Under Construction !</h5>
+			</div>
 		</div>
 	</div>
 

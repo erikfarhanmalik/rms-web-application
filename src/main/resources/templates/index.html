@@ -4,17 +4,21 @@
 <head>
 <meta charset="ISO-8859-1"/>
 <title>RMS - Home page</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-	<h1>RMS Home page</h1>
+	<div th:replace="layout :: navbar"></div>
 	
-	<a th:href="@{/employees}">Employees</a>
+	<h4 class="center-align">RMS Home page</h4>
 	
-	<div sec:authorize="isAuthenticated()">
-		<span sec:authentication="name"></span>
-		<form th:action="@{/logout}" method="POST">
-			<input type="submit" value="Logout"></input>
-		</form>
+	<div class="row center-align">
+		<a th:href="@{/employees}" class="waves-effect waves-light btn-large">
+			Go to Employees Page
+			<i class="material-icons right">send</i>
+		</a>
 	</div>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+<meta charset="ISO-8859-1" />
+<title>RMS - Home page</title>
+</head>
+<body>
+	<div class="col m12 l4 employee-list-container" id="employee-list-container"  th:fragment="list-employee">
+			<div class="list-control valign-wrapper">
+				<i class="material-icons">search</i>
+				<span style="margin-left: 20px">Search</span>
+				<span class="new badge" data-badge-caption="" th:text="${employeesCount}"></span>
+			</div>
+			<div class="employee" th:each="employee : ${employees}">
+				<input class="employeeId" type="hidden" th:value="${employee.id}"/>
+				<div class="picture">
+					<img src="/img/user.png" />
+				</div>
+				<span class="name" th:text="${employee.firstName} + ' ' + ${employee.lastName}">Name</span>
+				<span class="grade" th:text="${employee.division.code} + ' - ' + ${employee.grade.code}">Grade</span>
+				<span class="contact" th:text="${employee.location + ', ' + employee.phone}"></span>
+			</div>
+			<div class="pagintaion">
+				<span class="paging-label" th:text="${curentPage + ' / ' + totalPages}"></span>
+				<div class="paging-control">
+					Go to <input type="text" id="goToPage"/> 
+					<span onclick="movePagination()" id="paging-button" class="material-icons small">send</span>
+				</div>
+			</div>
+		</div>
+</body>
+</html>

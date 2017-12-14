@@ -6,4 +6,5 @@ import com.mitrais.rms.models.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
+	Employee findByUsername(String username);
 }
