@@ -3,9 +3,17 @@ var employeeId;
 $(function() {
 	initiallizeMaterializeCss();
 	setFormValidationRules();
-	inittializeEmployeeSelectEvent();
 	initializeControl()
 });
+
+function deleteEmployee(deleteButton){
+	var id = $(deleteButton).parent('.list-action').siblings('.employeeId').val();
+	$.delete("/employees/" + id, function(){
+		toastr.success('Data deleted successfully');
+	});
+	
+	$(deleteButton).parents('.employee').remove();
+}
 
 function initializeControl(){
 	$('.main-control span').click(function(){
@@ -13,9 +21,20 @@ function initializeControl(){
 	});
 }
 
+function filterList(event) {
+	if (event.keyCode == 13) {
+		var keyword = $('#keyword-filter').val();
+		$('#employee-list').load('employees/search?page=1&keyword=' + encodeURIComponent(keyword), function(response, status, xhr) {
+			if (status == "error") {
+				toastr.error('Failed to load employee data');
+			}
+		});    
+    }
+}
+
 function movePagination(){
 	var page = $('#goToPage').val(); 
-	var keyword = ""; 
+	var keyword = $('#keyword-filter').val(); 
 	
 	if(isNaN(page)){
 		toastr.error('Page should be number');
@@ -36,7 +55,7 @@ function changePage(page) {
 	$('[data-page-name="' + page + '"]').addClass('active');
 }
 
-function inittializeEmployeeSelectEvent() {
+function selectEmployee() {
 	$('.employee').click( function() {
 		employeeId = $(this).find('.employeeId').val();
 		
@@ -95,6 +114,9 @@ function setFormValidationRules() {
 				required : true
 			},
 			phone : {
+				required : true
+			},
+			username : {
 				required : true
 			},
 			email : {

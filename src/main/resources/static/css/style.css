@@ -77,18 +77,20 @@ nav {
 	padding: 0 1rem;
 }
 
-.employee:hover {
-	background-color: #aab7ff;
+.employee .picture, 
+.employee .name, 
+.employee .grade, 
+.employee .contact{
+	cursor: pointer;
 }
 
 .employee {
 	display: grid;
-	grid-template-columns: 50px auto;
+	grid-template-columns: 50px auto 60px;
 	grid-template-rows: auto auto auto;
 	grid-column-gap: 5px;
 	padding: 10px;
-	border-bottom: solid 1px #888;
-	cursor: pointer;
+	border-bottom: solid 1px #888;	
 }
 
 .picture {
@@ -180,5 +182,32 @@ nav {
     color: #26a69a;
     border-radius: 3px;
     background-color: #eee;
+    cursor: pointer;
+}
+
+#keyword-filter {
+    height: 20px;
+    margin-bottom: 0;
+}
+
+span.badge.new {
+	margin: 0;
+}
+
+#goToPage:focus, #keyword-filter:focus {
+    border-bottom: solid 1px #fff;
+    box-shadow: 0 1px 0 0 #fff;
+}
+
+.list-action {
+    grid-column: 3 / 4;
+    grid-row: 1/5;
+    display: flex;
+    align-items: center;
+	justify-content: center;
+}
+
+.list-action span {
+    color: #26a69a;
     cursor: pointer;
 }

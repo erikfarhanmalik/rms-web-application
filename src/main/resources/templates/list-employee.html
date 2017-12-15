@@ -8,20 +8,33 @@
 <body>
 	<div class="col m12 l4 employee-list-container" id="employee-list-container"  th:fragment="list-employee">
 			<div class="list-control valign-wrapper">
-				<i class="material-icons">search</i>
-				<span style="margin-left: 20px">Search</span>
-				<span class="new badge" data-badge-caption="" th:text="${employeesCount}"></span>
+				<span class="center-align">
+					<i class="material-icons">search</i>
+				</span>
+				<span>
+					<input type="text" id="keyword-filter" placeholder="Search..." onkeypress="filterList(event)" th:value="${keyword}"/>
+				</span>
+				<span class="center-align">
+					<span class="new badge" data-badge-caption="" th:text="${employeesCount}"></span>
+				</span>
 			</div>
 			<div class="employee" th:each="employee : ${employees}">
 				<input class="employeeId" type="hidden" th:value="${employee.id}"/>
-				<div class="picture">
+				<div class="picture" onclick="selectEmployee()">
 					<img src="/img/user.png" />
 				</div>
-				<span class="name" th:text="${employee.firstName} + ' ' + ${employee.lastName}">Name</span>
-				<span class="grade" th:text="${employee.division.code} + ' - ' + ${employee.grade.code}">Grade</span>
-				<span class="contact" th:text="${employee.location + ', ' + employee.phone}"></span>
+				<span onclick="selectEmployee()" class="name" th:text="${employee.firstName} + ' ' + ${employee.lastName}">Name</span>
+				<span onclick="selectEmployee()" class="grade" th:text="${employee.division.code} + ' - ' + ${employee.grade.code}">Grade</span>
+				<span onclick="selectEmployee()" class="contact" th:text="${employee.location + ', ' + employee.phone}"></span>
+				<span class="list-action">
+					<span class="material-icons small" >edit</span>
+					<span class="material-icons small" onclick="deleteEmployee(this)">delete_forever</span>
+				</span>
 			</div>
-			<div class="pagintaion">
+			<div class="empty-message center-align" th:if="${employeesCount} eq 0">
+				Data not found
+			</div>
+			<div class="pagintaion" th:if="${totalPages} gt 1">
 				<span class="paging-label" th:text="${curentPage + ' / ' + totalPages}"></span>
 				<div class="paging-control">
 					Go to <input type="text" id="goToPage"/> 

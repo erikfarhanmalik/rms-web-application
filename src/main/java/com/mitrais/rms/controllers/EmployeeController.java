@@ -3,6 +3,7 @@ package com.mitrais.rms.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,13 +63,20 @@ public class EmployeeController {
 		ResponseEntity<Object> result;
 		int pageSize = 5;
 		try {
-			Page<Employee> pageResult = employeeRepository.findAll(new PageRequest(page - 1, pageSize));
+			Page<Employee> pageResult;
+			PageRequest pageRequest = new PageRequest(page - 1, pageSize);
+			if(StringUtils.isNotBlank(keyword)) {
+				pageResult = employeeRepository.findByFirstNameContainingOrLastNameContaining(keyword, keyword, pageRequest);
+			} else {
+				pageResult = employeeRepository.findAll(pageRequest);	
+			}
 			
 			Map<String, Object> model = new HashMap<>();
 			model.put("employees", pageResult.getContent());
 			model.put("employeesCount", pageResult.getTotalElements());
 			model.put("totalPages", pageResult.getTotalPages());
 			model.put("curentPage", page);
+			model.put("keyword", keyword);
 
 			Context context = new Context();
 			context.setVariables(model);
@@ -110,6 +119,24 @@ public class EmployeeController {
 			result = ResponseEntity.ok(content);
 		} catch (Exception e) {
 			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("");
+		}
+
+		return result;
+	}
+	
+	@DeleteMapping(value = "/employees/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<Object> deleteEmployee(@PathVariable("id") Integer id) {
+		ResponseEntity<Object> result;
+		ObjectNode responseBody = new ObjectMapper().createObjectNode();		
+		try {
+			employeeRepository.delete(id);
+			responseBody.put("status", "success");
+			result = ResponseEntity.ok(responseBody);
+		} catch (Exception e) {
+			responseBody.put("status", "failed");
+			responseBody.put("reason", e.getMessage());
+			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
 		}
 
 		return result;
