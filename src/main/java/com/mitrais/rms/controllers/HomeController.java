@@ -34,6 +34,7 @@ public class HomeController implements CommandLineRunner {
 	private final GradeRepository gradeRepository;
 	private final DivisionRepository divisionRepository;
 	private final Logger log = LoggerFactory.getLogger(HomeController.class);
+	private String password = new BCryptPasswordEncoder().encode("password");
 
 	@Autowired
 	public HomeController(EmployeeRepository employeeRepository, GradeRepository gradeRepository,
@@ -50,7 +51,7 @@ public class HomeController implements CommandLineRunner {
 
 	@GetMapping("/login")
 	public String login() {
-		return "/login";
+		return "login";
 	}
 
 	@Transactional
@@ -123,7 +124,7 @@ public class HomeController implements CommandLineRunner {
 		employee.setEmail(username + "@mitrais.com");
 		employee.setLocation(location);
 		employee.setUsername(username);
-		employee.setPassword(new BCryptPasswordEncoder().encode("password"));
+		employee.setPassword(password);
 		employee.setRole(role);
 		employeeRepository.save(employee);
 	}
