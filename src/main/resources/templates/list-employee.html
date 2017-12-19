@@ -27,7 +27,7 @@
 				<span onclick="selectEmployee()" class="grade" th:text="${employee.division.code} + ' - ' + ${employee.grade.code}">Grade</span>
 				<span onclick="selectEmployee()" class="contact" th:text="${employee.location + ', ' + employee.phone}"></span>
 				<span class="list-action">
-					<span class="material-icons small" >edit</span>
+					<span class="material-icons small" onclick="selectEmployeeForUpdate(this)">edit</span>
 					<span class="material-icons small" onclick="deleteEmployee(this)">delete_forever</span>
 				</span>
 			</div>

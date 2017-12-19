@@ -40,13 +40,12 @@ $(function() {
 			    url: url,
 			    type: 'PUT',
 			    success: callback,
-			    data: data,
+			    data: JSON.stringify(data),
 			    contentType: type
 			  });
 			}
 	
 	$.delete = function(url, data, callback, type){
-		 
 			  if ( $.isFunction(data) ){
 			    type = type || callback,
 			        callback = data,
@@ -61,5 +60,38 @@ $(function() {
 			    contentType: type
 			  });
 			}
+	
+	$.serializeFormToJson = function (form) {
+		var obj = {};
+		var elements = $(form).find("input, select, textarea");
+		for (var i = 0; i < elements.length; ++i) {
+			var element = elements[i];
+			var name = element.name;
+			var value = element.value;
+			if (name) {
+				if (name.indexOf(".id") === -1) {
+					obj[name] = value;
+				} else {
+					var names = name.split(".");
+					var childObject = {};
+					childObject["id"] = value;
+					obj[names[0]] = childObject;
+				}
+			}
+		}
+		return obj;
+	}
+
+	$.deserializeJsonStringToForm = function (jsonData, form) {
+		for ( var key in jsonData) {
+			if(jsonData[key] !== null){
+				if (typeof jsonData[key] === 'object') {
+					$(form).find('[name="' + key + '.id"]').val(jsonData[key].id);
+				} else {
+					$(form).find('[name="' + key + '"]').val(jsonData[key]);
+				}	
+			}
+		}
+	}
 });
 

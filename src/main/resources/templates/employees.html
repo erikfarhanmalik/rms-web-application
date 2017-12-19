@@ -61,12 +61,12 @@
 	
 					<div class="row">
 						<div th:replace="common::input-text ('Nationality', 'nationality')"></div>
-						<div th:replace="common::drop-down ('Grade', 'grade', ${@dropdownService.getGradeDropdown()})"></div>
+						<div th:replace="common::drop-down ('Grade', 'grade.id', ${@dropdownService.getGradeDropdown()})"></div>
 					</div>
 	
 					<div class="row">
 						<div th:replace="common::drop-down ('Marital Status', 'maritalStatus', ${@dropdownService.getMaritalStatusDropdown()})"></div>
-						<div th:replace="common::drop-down ('Division', 'division', ${@dropdownService.getDivisionDropdown()})"></div>
+						<div th:replace="common::drop-down ('Division', 'division.id', ${@dropdownService.getDivisionDropdown()})"></div>
 					</div>
 	
 					<div class="row">
@@ -79,8 +79,12 @@
 					</div>
 	
 					<div class="row right-align">
-						<a href="#" onclick="submitForm()" class="btn waves-effect waves-light">
+						<a href="#" onclick="submitForm()" class="btn waves-effect waves-light" id="submit-button">
 							Submit <i class="material-icons right">send</i>
+						</a>
+						
+						<a href="#" onclick="updateEmployee()" class="btn waves-effect waves-light hide" id="update-button">
+							Update <i class="material-icons right">send</i>
 						</a>
 					</div>
 				</form>

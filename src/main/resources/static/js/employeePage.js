@@ -70,6 +70,30 @@ function selectEmployee() {
 	});
 }
 
+function selectEmployeeForUpdate(updateButton) {
+	employeeId = $(updateButton).parent('.list-action').siblings('.employeeId').val();
+	$.get("/api/employees/" + employeeId, function(data) {
+		$.deserializeJsonStringToForm(data, $('#employee-form'));
+		Materialize.updateTextFields();
+		$('#update-button').removeClass('hide');
+		$('#submit-button').addClass('hide');
+		changePage('create-page');
+	});
+}
+
+function updateEmployee() {
+	if ($("#employee-form").valid()) {
+		var data = $.serializeFormToJson($('#employee-form'));
+		data.id = employeeId;
+		$.postJSON($("#employee-form").attr('action'), data, 
+		function(jsonResponse, textStatus, xhr) {
+			toastr.success('Employee data updated successfully')
+		}, function() {
+			toastr.error('Failed to update employee data')
+		});
+	}
+}
+
 function initiallizeMaterializeCss() {
 	$('.datepicker').pickadate({
 		selectMonths : true, // Creates a dropdown to control month
@@ -149,13 +173,7 @@ function addEmployeeListEntry(employee) {
 
 function submitForm() {
 	if ($("#employee-form").valid()) {
-		var data = $('#employee-form').serializeObject();
-		data.grade = {
-			id : data.grade
-		}
-		data.division = {
-			id : data.division
-		}
+		var data = $.serializeFormToJson($('#employee-form'));
 		$.postJSON($("#employee-form").attr('action'), data, function(
 				jsonResponse, textStatus, xhr) {
 			$('#employee-form')[0].reset();

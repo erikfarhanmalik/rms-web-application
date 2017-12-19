@@ -124,6 +124,19 @@ public class EmployeeController {
 		return result;
 	}
 	
+	@GetMapping(value = "/api/employees/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Object> getJsonEmployee(@PathVariable("id") Integer id) {
+		ResponseEntity<Object> result;
+		try {
+			Employee employee = employeeRepository.findOne(id);
+			result = ResponseEntity.ok(employee);
+		} catch (Exception e) {
+			result = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{}");
+		}
+
+		return result;
+	}
+	
 	@DeleteMapping(value = "/employees/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Object> deleteEmployee(@PathVariable("id") Integer id) {
