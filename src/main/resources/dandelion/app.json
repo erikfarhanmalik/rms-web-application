@@ -1,0 +1,14 @@
+{
+	"bundle": "app",
+	"dependencies": [
+		"materialize",
+		"datatables"
+	],
+	"assets": [
+		{
+			"locations": {
+				"classpath": "static/js/MyOwnJavascript.js"
+			}
+		}
+	]
+}

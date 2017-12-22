@@ -1,0 +1,17 @@
+{
+	"dependencies": [
+		"jquery"
+	],
+	"assets": [
+		{
+			"locations": {
+				"remote": "//cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"
+			}
+		},		
+		{
+			"locations": {
+				"webjar": "materialize.min.js"
+			}
+		}
+	]
+}

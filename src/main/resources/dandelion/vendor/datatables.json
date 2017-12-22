@@ -1,0 +1,22 @@
+{
+	"dependencies": [
+		"jquery"
+	],
+	"assets": [
+		{
+			"locations": {
+				"webjar": "dataTables.material.min.css"
+			}
+		},
+		{
+			"locations": {
+				"webjar": "jquery.dataTables.min.js"
+			}
+		},
+		{
+			"locations": {
+				"webjar": "dataTables.material.min.js"
+			}
+		}
+	]
+}
