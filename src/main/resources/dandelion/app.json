@@ -7,8 +7,13 @@
 	"assets": [
 		{
 			"locations": {
+				"classpath": "static/js/jquery.spring-friendly.min.js"
+			}
+		},
+		{
+			"locations": {
 				"classpath": "static/js/MyOwnJavascript.js"
 			}
-		}
+			}
 	]
 }

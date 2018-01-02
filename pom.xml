@@ -104,7 +104,18 @@
 			<artifactId>materializecss</artifactId>
 			<version>0.100.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>material-design-icons</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 		<!-- End Webjars -->
+
+		<dependency>
+			<groupId>com.github.darrachequesne</groupId>
+			<artifactId>spring-data-jpa-datatables</artifactId>
+			<version>4.3</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -14,11 +14,24 @@ $(function() {
 	
 	
 //	ajax-source
+//	$('#example').DataTable( {
+//        "ajax": "/dandelion-api/employees",
+//        "columns": [
+//            { title: "First Name", data: "firstName" },
+//            { title: "Last Name", data: "lastName" },
+//            { title: "Status", data: "status" },
+//            { title: "Email", data: "email" }
+//        ]
+//    } );
+	
+//	ajax-process
 	$('#example').DataTable( {
-        "ajax": "/dandelion-api/employees",
+        "ajax": "/rms-api/employee",
+        'serverSide' : true,
         "columns": [
             { title: "First Name", data: "firstName" },
             { title: "Last Name", data: "lastName" },
+            { title: "Grade", data: "grade.code" },
             { title: "Status", data: "status" },
             { title: "Email", data: "email" }
         ]

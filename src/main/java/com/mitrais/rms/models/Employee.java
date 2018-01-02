@@ -9,8 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.mitrais.rms.annotations.EmailForm;
+import com.mitrais.rms.annotations.NonForm;
 import com.mitrais.rms.enums.EmployeeStatus;
 import com.mitrais.rms.enums.Gender;
 import com.mitrais.rms.enums.MaritalStatus;
@@ -23,6 +27,7 @@ import lombok.Data;
 public class Employee {
 	@Id
 	@GeneratedValue
+	@NonForm
 	private Integer id;
 	private String firstName;
 	private String lastName;
@@ -41,7 +46,7 @@ public class Employee {
 
 	@Enumerated(EnumType.STRING)
 	private EmployeeStatus status;
-	
+
 	@JsonFormat(pattern = "d MMMM, yyyy")
 	private LocalDate suspendDate;
 	@JsonFormat(pattern = "d MMMM, yyyy")
@@ -52,13 +57,17 @@ public class Employee {
 
 	@ManyToOne
 	private Division division;
+	
+	@EmailForm
 	private String email;
 	private String location;
-	
-	@Column(nullable = false, unique = true)
-    private String username;
-    private String password;
 
-    @Enumerated(EnumType.STRING)
+	@Column(nullable = false, unique = true)
+	@NotNull
+	@Size(max = 255)
+	private String username;
+	private String password;
+
+	@Enumerated(EnumType.STRING)
 	private UserRole role;
 }

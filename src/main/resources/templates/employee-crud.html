@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:ddl="http://www.thymeleaf.org/dandelion"
+	ddl:bundle-includes="crud-app">
+<head>
+<meta charset="ISO-8859-1" />
+<title>CRUD - Employee</title>
+</head>
+<body>
+	<div th:replace="layout :: navbar"></div>
+	
+	<h4 class="center-align">Employee Crud</h4>
+	
+	<a class="waves-effect waves-light btn list-button">List</a>
+	<a class="waves-effect waves-light btn form-button">form</a>
+	
+	<div class="main-content">
+		<div class="data-table">
+			<table id="example" class="mdl-data-table" width="100%" cellspacing="0">				
+			</table>
+		</div>
+		<div class="form-page">
+			
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"bundle": "crud-app",
+	"dependencies": [
+		"app"
+	],
+	"assets": [
+		{
+			"locations": {
+				"classpath": "static/js/crud-page.js"
+			}
+		}
+	]
+}
