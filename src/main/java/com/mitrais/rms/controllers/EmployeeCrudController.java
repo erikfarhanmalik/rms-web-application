@@ -9,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mitrais.rms.factories.Form;
-import com.mitrais.rms.factories.FormFactory;
 import com.mitrais.rms.models.Employee;
 import com.mitrais.rms.repositories.EmployeeRepository;
 
@@ -26,9 +23,6 @@ public class EmployeeCrudController {
 
 	@GetMapping(value = "/employee-crud")
 	public String divsionPage() throws Exception {
-		Form form = FormFactory.createEmployeeForm();
-		ObjectMapper objectMapper = new ObjectMapper();
-		System.out.println(objectMapper.writeValueAsString(form));
 		return "employee-crud";
 	}
 

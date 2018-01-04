@@ -1,6 +1,6 @@
 package com.mitrais.rms.factories;
 
-import java.util.Map;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class Form {
 	private String action;
-	private Map<String, FormControl> formControls;
+	private List<FormControl> formControls;
 }

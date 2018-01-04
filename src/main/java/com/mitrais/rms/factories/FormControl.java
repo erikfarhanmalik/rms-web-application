@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class FormControl {
 	private String name;
+	private String label;
 	private String type;
 	private boolean isRequired;
 	private Integer length;

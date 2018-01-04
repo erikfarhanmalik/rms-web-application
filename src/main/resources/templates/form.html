@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<form th:fragment="general-form (form)" method="POST" action="@{/employee-crud}">
+		<th:block th:each="formControl : ${form.formControls}">
+			<th:block th:if="${formControl.type eq 'String'}">
+				<div th:replace="common::input-text (${formControl.label}, ${formControl.name})"></div>
+			</th:block>
+			
+			<th:block th:if="${formControl.type eq 'LocalDate'}">
+				<div th:replace="common::date-picker (${formControl.label}, ${formControl.name})"></div>
+			</th:block>
+			
+			<th:block th:if="${formControl.type eq 'Select'}">
+				<div th:replace="common::drop-down (${formControl.label}, ${formControl.name}, ${@dropdownFactory.createDropdown(formControl.name)})"></div>
+			</th:block>
+			
+		</th:block>
+	</form>
+</body>
+</html>
