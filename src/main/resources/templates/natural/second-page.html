@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title th:fragment="title">RMS - Table</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" href="../../static/css/style.css" />
+</head>
+<body>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">RMS</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li class="header-user-info">
+						<span>Erik Farhan Malik</span> 
+						<span>[SE - PG]</span> <span class="title">(Admin)</span>
+					</li>
+					<li>
+						<a href="#"> 
+							<i class="material-icons">settings</i>
+						</a>
+					</li>
+					<li>
+						<a href="#" onclick="$('#logout-form').submit()">
+							<i class="material-icons">power_settings_new</i> 
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<form id="logout-form" style="display: none" method="post" action="/logout"></form>
+		</nav>
+	</div>
+
+	<div class="content" th:fragment="content">
+		<h4 class="center-align">Second Page</h4>
+
+		<div class="row">
+			<div class="col s6 offset-s3">
+			<table>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+					</tr>
+				</thead>
+				<tbody th:remove="all-but-first">
+					<tr th:each="employee : ${employees}">
+						<td th:text="${employee.id}">1</td>
+						<td th:text="${employee.firstName}">Erik</td>
+						<td th:text="${employee.lastName}">Farhan Malik</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Rudi</td>
+						<td>Habibie</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>Muhammad</td>
+						<td>Zulkarnain</td>
+					</tr>
+				</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+	"dependencies": [
+		"jquery"
+	],
+	"assets": [
+		{
+			"locations": {
+				"webjar": "material-icons.css"
+			}
+		},
+		{
+			"locations": {
+				"webjar": "materialize.min.css"
+			}
+		},
+		{
+			"locations": {
+				"webjar": "materialize.min.js"
+			}
+		}
+	]
+}

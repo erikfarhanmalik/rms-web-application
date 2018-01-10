@@ -1,0 +1,13 @@
+{
+	"bundle": "natural",
+	"dependencies": [
+		"materialize2"
+	],
+	"assets": [
+		{
+			"locations": {
+				"classpath": "static/css/style.css"
+			}
+		}
+	]
+}
