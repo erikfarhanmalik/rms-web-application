@@ -15,24 +15,18 @@
 			<div class="nav-wrapper">
 				<a href="#" class="brand-logo">RMS</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li class="header-user-info">
-						<span>Erik Farhan Malik</span> 
-						<span>[SE - PG]</span> <span class="title">(Admin)</span>
-					</li>
-					<li>
-						<a href="#"> 
-							<i class="material-icons">settings</i>
-						</a>
-					</li>
-					<li>
-						<a href="#" onclick="$('#logout-form').submit()">
-							<i class="material-icons">power_settings_new</i> 
-						</a>
-					</li>
+					<li class="header-user-info"><span>Erik Farhan Malik</span> <span>[SE
+							- PG]</span> <span class="title">(Admin)</span></li>
+					<li><a href="#"> <i class="material-icons">settings</i>
+					</a></li>
+					<li><a href="#" onclick="$('#logout-form').submit()"> <i
+							class="material-icons">power_settings_new</i>
+					</a></li>
 				</ul>
 			</div>
 
-			<form id="logout-form" style="display: none" method="post" action="/logout"></form>
+			<form id="logout-form" style="display: none" method="post"
+				action="/logout"></form>
 		</nav>
 	</div>
 
@@ -41,35 +35,57 @@
 
 		<div class="row">
 			<div class="col s6 offset-s3">
-			<table>
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-					</tr>
-				</thead>
-				<tbody th:remove="all-but-first">
-					<tr th:each="employee : ${employees}">
-						<td th:text="${employee.id}">1</td>
-						<td th:text="${employee.firstName}">Erik</td>
-						<td th:text="${employee.lastName}">Farhan Malik</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Rudi</td>
-						<td>Habibie</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Muhammad</td>
-						<td>Zulkarnain</td>
-					</tr>
-				</tbody>
-			</table>
+				<table>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+						</tr>
+					</thead>
+					<tbody th:remove="all-but-first">
+						<tr th:each="employee : ${employees}">
+							<td th:text="${employee.id}">1</td>
+							<td th:text="${employee.firstName}">Erik</td>
+							<td th:text="${employee.lastName}">Farhan Malik</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Rudi</td>
+							<td>Habibie</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Muhammad</td>
+							<td>Zulkarnain</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col s6 offset-s3 center-align">
+				<a class="waves-effect waves-light btn-large" href="#" onclick="doSomeAjaxCall()">
+					Try Ajax Calls <i class="material-icons right">send</i>
+				</a>
+				<div>Ajax response:</div>
+				<div id="ajax-response"></div>
 			</div>
 		</div>
 	</div>
 
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script type="text/javascript" th:fragment="inline-script-container" th:inline="javascript">
+		function doSomeAjaxCall() {
+			//can use : https://github.com/erikfarhanmalik/rest-api-dummy
+			$.ajax({
+				method : "GET",
+				url : /*[[@{/natural/api/employee/2}]]*/ "http://localhost:9000/api/employee"
+			}).done(function(response) {
+				$("#ajax-response").html(JSON.stringify(response));
+			});
+		}
+	</script>
 </body>
 </html>

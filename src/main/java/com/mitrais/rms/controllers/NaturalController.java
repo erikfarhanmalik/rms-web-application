@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mitrais.rms.models.Employee;
 import com.mitrais.rms.repositories.EmployeeRepository;
@@ -24,6 +26,13 @@ public class NaturalController {
 	@GetMapping("/natural")
 	public String index() {
 		return "natural-index";
+	}
+	
+	@GetMapping("/natural/api/employee/{id}")
+	@ResponseBody
+	public Employee getEmployee(@PathVariable("id") Integer id) {
+		Employee employee = employeeRepository.findOne(id);
+		return employee;
 	}
 
 	@GetMapping("/natural-second")

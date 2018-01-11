@@ -9,5 +9,9 @@
 <body>
 	<div th:replace="natural/index::navigation-bar"></div>
 	<div th:replace="natural/second-page::content"></div>
+	
+	<th:block ddl:placeholder-include="js"></th:block>
+    
+	<div th:replace="natural/second-page::inline-script-container"></div>
 </body>
 </html>
