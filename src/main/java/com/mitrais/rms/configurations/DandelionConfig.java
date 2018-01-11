@@ -18,13 +18,14 @@ import com.github.dandelion.core.web.DandelionServlet;
 import com.github.dandelion.thymeleaf.dialect.DandelionDialect;
 
 @Configuration
-public class WebConfig {
+public class DandelionConfig {
+	
 	@Autowired
 	private Environment environment;
 	
 	@PostConstruct
 	public void setProperty() {
-		if(Arrays.asList(environment.getActiveProfiles()).contains("prod")) {			
+		if(Arrays.asList(environment.getActiveProfiles()).contains("prod") || Arrays.asList(environment.getActiveProfiles()).contains("qa")) {			
 			System.setProperty("dandelion.profile.active", "prod");
 		}
 	}

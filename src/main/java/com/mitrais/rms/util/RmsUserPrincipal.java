@@ -1,7 +1,7 @@
 package com.mitrais.rms.util;
 
 import java.util.Collection;
-
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,7 +25,11 @@ public class RmsUserPrincipal implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Lists.newArrayList(new SimpleGrantedAuthority(employee.getRole().name()));
+		List<SimpleGrantedAuthority> roles = Lists.newArrayList(new SimpleGrantedAuthority(employee.getRole().name()));
+		if("ROLE_ADMIN".equals(employee.getRole().name())) {
+			roles.add(new SimpleGrantedAuthority("ROLE_ACTUATOR"));
+		}
+		return roles;
 	}
 
 	@Override
