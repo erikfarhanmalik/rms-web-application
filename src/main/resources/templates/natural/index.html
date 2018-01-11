@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/security/tags">
 <head>
 <meta charset="ISO-8859-1" />
 <title th:fragment="title">RMS - Home page</title>
@@ -16,18 +16,18 @@
 				<a href="#" class="brand-logo">RMS</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li class="header-user-info" th:with="user=${#authentication.getPrincipal().getUser()}">
-						<span th:text ="${user.getFirstName() + ' ' + user.getLastName()}">Farhan Malik</span>
-						<span th:text ="${'[' + user.getDivision().getCode() + ' - ' + user.getGrade().getCode() + ']'}">[SE - PG]</span>
+						<span th:text="${user.getFirstName() + ' ' + user.getLastName()}">Farhan Malik</span>
+						<span th:text="${'[' + user.getDivision().getCode() + ' - ' + user.getGrade().getCode() + ']'}">[SE - PG]</span>
 						<span class="title" sec:authorize="hasRole('ADMIN')">(Admin)</span>
 					</li>
 					<li>
-						<a href="#"> 
+						<a href="#">
 							<i class="material-icons">settings</i>
 						</a>
 					</li>
 					<li>
 						<a href="#" onclick="$('#logout-form').submit()">
-							<i class="material-icons">power_settings_new</i> 
+							<i class="material-icons">power_settings_new</i>
 						</a>
 					</li>
 				</ul>
@@ -42,14 +42,17 @@
 
 		<div class="row center-align">
 			<a class="waves-effect waves-light btn-large" href="./second-page.html" th:href="@{/natural-second}">
-				Go to Second Page <i class="material-icons right">send</i>
+				Go to Second Page
+				<i class="material-icons right">send</i>
 			</a>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<script type="text/javascript" th:fragment="inline-script-container">
-		$(function() { console.log("script loaded"); });
+		$(function() {
+			console.log("script loaded");
+		});
 	</script>
 </body>
 </html>

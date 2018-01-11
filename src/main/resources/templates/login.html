@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <title>RMS</title>
-<meta name="description" content="Index"/>
-<meta name="author" content="Mitrais"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-<link rel="stylesheet"
-	href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"/>
+<meta name="description" content="Index" />
+<meta name="author" content="Mitrais" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" />
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<link rel="stylesheet" th:href="@{/css/style.css}"/>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
 
 <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -27,37 +25,32 @@
 				<h2 class="mdl-card__title-text">RMS - Mitrais</h2>
 			</div>
 			<div class="mdl-card__supporting-text">
-			
+
 				<div th:if="${param.error}">
-                    <div class="alert alert-danger">
-                        Invalid username and password.
-                    </div>
-                </div>
-                <div th:if="${param.logout}">
-                    <div class="alert alert-info">
-                        You have been logged out.
-                    </div>
-                </div>
+					<div class="alert alert-danger">Invalid username and password.</div>
+				</div>
+				<div th:if="${param.logout}">
+					<div class="alert alert-info">You have been logged out.</div>
+				</div>
 
 				<form id="login-form" th:action="@{/login}" method="post">
 					<div class="mdl-textfield mdl-js-textfield">
-						<input class="mdl-textfield__input" type="text" id="username" name="username"/>
+						<input class="mdl-textfield__input" type="text" id="username" name="username" />
 						<label class="mdl-textfield__label" for="username">Username</label>
 					</div>
 					<div class="mdl-textfield mdl-js-textfield">
 						<input class="mdl-textfield__input" type="password" id="password" name="password" />
 						<label class="mdl-textfield__label" for="password">Password</label>
 					</div>
-					
-					Remember Me: <input type="checkbox" name="remember-me" />
+
+					Remember Me:
+					<input type="checkbox" name="remember-me" />
 				</form>
 
 			</div>
 			<div class="mdl-card__actions mdl-card--border">
-				<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-						onclick="$('#login-form').submit()">
-				Log in
-				</button>
+				<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="$('#login-form').submit()">
+					Log in</button>
 			</div>
 		</div>
 		</main>

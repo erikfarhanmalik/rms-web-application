@@ -8,7 +8,7 @@
 	</div>
 	
 	<div th:fragment="readonly-field (label,value)" class="input-field col s6">
-      <input disabled="" th:value="${value}" type="text"/>
+      <input disabled="disabled" th:value="${value}" type="text"/>
       <label class="active" th:text="${label}"></label>
     </div>
 	
@@ -19,7 +19,7 @@
 	</div>
 	
 	<div th:fragment="drop-down (label,id,options)" class="input-field col s6">
-		<select th:id="${id}" th:name="${id}" th:attr="data-error=${id + '-error' }" required="">
+		<select th:id="${id}" th:name="${id}" th:attr="data-error=${id + '-error' }" required="required">
 			<option value="" th:text="'Choose ' + ${label}"></option>
 	      	<option th:each="option : ${options}" th:value="${option.value}" th:text="${option.label}"></option>
 	    </select>
