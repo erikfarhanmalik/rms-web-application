@@ -21,7 +21,7 @@
 			<div class="employee" th:each="employee : ${employees}">
 				<input class="employeeId" type="hidden" th:value="${employee.id}"/>
 				<div class="picture" onclick="selectEmployee()">
-					<img src="/img/user.png" th:src="@{/img/user.png}" />
+					<img src="/img/user.png"/>
 				</div>
 				<span onclick="selectEmployee()" class="name" th:text="${employee.firstName} + ' ' + ${employee.lastName}">Name</span>
 				<span onclick="selectEmployee()" class="grade" th:text="${employee.division.code} + ' - ' + ${employee.grade.code}">Grade</span>

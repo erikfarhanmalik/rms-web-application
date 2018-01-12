@@ -46,8 +46,6 @@ public class HomeController implements CommandLineRunner {
 
 	@GetMapping("/")
 	public String homePage() {
-		System.out.println("Employee max id: " + employeeRepository.getMaxId());
-		System.out.println("Employee max id: " + employeeRepository.getMaxIdWithNativeQuery());
 		return "index";
 	}
 
